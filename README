@@ -1,0 +1,18 @@
+README & INSTRUCTION
+
+|- How to Run?
+
+$ java -jar Tic.jar
+
+|- Tic-tac-toe
+
+In Game Screen, play tic-tac-toe. The rule can be referred from the internet :)
+Besides clicking on the screen the perform a "drawing", key press of 1 through 9 can also have 
+the same effect.
+
+In Prompt Screen, it prompts you who is the winner or if there is a draw. Use the mouse to click
+on any place in the screen can restart/start a new game.
+
+We put a time limit on each player's turn. If the player does not make a move when the time
+expires, it becomes the other player's turn and the timer resets.
+
