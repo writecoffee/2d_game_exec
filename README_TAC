@@ -1,0 +1,105 @@
+---------------------------------------------- Tac ----------------------------------------------
+                                                                        -- Silao Xu
+
+-- $ java -jar Tac.jar 1>/dev/null
+        
+-- Engine Requirements
+      **  Path finding
+          The unit use A* algorithm to search for possible path; the path is shown
+          in transparent pink color.
+      **  View port
+          In the game board screen, using mousewheel scrolling for zoom in/out and 
+          use <CTRL> + Left-Mouse-Click dragging for panning.
+      **  Sprite-sheet images
+          When a tank is commanded to go for a grid tile, when it is on the way to
+          the destination, the wheel is moving. Also when it is shooting.
+      **  Shared images and Animation
+          There is a sprite sheet table, sheet name as key and sprite sheet information
+          as value. Everytime the same sheet is going to be loaded, it would refer
+          to the table first. Every unit maintains its single sprite reference, the
+          reference information includes the current frame and its sprite grid location
+          on the sprite image.
+      **  Behavior Trees
+          The tank AI behavior tree is like this
+           
+              SELECTOR
+              |       |
+              |       \
+              |        -------------------------------
+              |                                       \
+              |                                       |
+            COND                          RANDOM_SEQUENCE_SELECTOR
+    (is in line with enemy)      ------------------------------------------
+              |                 /              |              |            \
+              |                 |              |              |            |
+              |               COND            COND          COND          COND
+            SHOOT         (North Goable) (South Goable) (East Goable) (West Goable)
+                                |              |              |            |
+                                |              |              |            |
+                            GO NORTH       GO SOUTH       GO EAST       GO WEST
+
+      
+-- Game Requirements
+      **  Unit's moving
+          The unit can move to any passable grid using A* algorithm. No overlapping
+          between units.
+      **  Map file format
+          The map file format sticks with the TA example map format.
+      **  Tank sprite information
+          The tank sprite image information should be provided in directory support/.
+          For player tanks, the name of it should be "tank-computer.spr"; for AI
+          tanks, the name should be "tank-computer.spr".
+          The tank sprite format should be like
+
+          <SPRITE FILE NAME>
+          <GRID WIDTH> <GRID WIDTH PADDING>
+          <GRID HEIGHT> <GRID HEIGHT PADDING>
+          DIR_NORTH
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          DIR_SOUTH
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          DIR_EAST
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          DIR_WEST
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          SHOOT_NORTH
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          SHOOT_SOUTH
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          SHOOT_EAST
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+          SHOOT_WEST
+          <row1> <col1>
+          <row2> <col2>
+          ...
+          END
+      **  Bullet System
+          Yield by specific tank unit.
+      **  AI won
+          Once all player units got eliminated.
+      **  Player won
+          Once all AI units got eliminated.
+
+-- Approximate hour to Complete
+      Total (hour) ~= Tac1 + Tac2 ~= 80
