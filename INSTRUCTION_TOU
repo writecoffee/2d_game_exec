@@ -1,0 +1,59 @@
+INSTRUCTION
+
+MISSION: shoot as many enemy warplanes as you like. and dodge the enemies if they are
+moving close. The most important, KILL THE BOSS and you'll win!
+
+-- Start a Game
+
+    Choose a map on the menu
+
+-- Quit a Game
+
+    <ESC> key in the board screen
+
+-- Panning
+
+    <CTRL> + Left-Mouse-Click dragging
+
+-- Zooming
+
+    Use mousewheel scrolling
+
+-- Select tank unit
+
+    left click on the tank
+
+-- Move a tank unit
+
+    select a unit then right click on passable tile
+
+-- Command a tank to shoot a target enemy
+
+    Right click on the target unit, out tank will find a ideal path it thinks 
+    and embush the enemy. If it stops, that might be caused by the fact that
+    the enemy move so fast and it got lost on its way to attack. Once the
+    target is locked, the tank would try its best to tail after the target
+    and player can let it go and take care of another tank.
+
+    It is possible to dodge a bullet. The AI tank uses the same logic for 
+    tracking its prey. So once the player notices that your precious tank
+    unit got spotted, try to command the tank and let it move as fast as
+    possible to confuscate the enemy.
+
+-- Move the warplane
+
+         W
+         |
+    A ------- D
+         |
+         S
+
+-- Command the warplane to fire
+
+    press J key
+
+-- HP deduction
+    
+    When our warplane got hitten by a little airplane, the HP would be deducted by
+    30 point. When it is hitten by a bullet emitted by boss, 3 point deduction per
+    bullet. When the warplane collides with the boss, it defuncts.

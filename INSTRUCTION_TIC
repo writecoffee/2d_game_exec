@@ -1,0 +1,13 @@
+INSTRUCTION
+
+-- Game Screen
+
+Play tic-tac-toe. The rule can be referred from the handout. Besides clicking on the 
+screen the perform a "drawing", key press of 1 through 9 can also have the same
+effect.
+
+-- Prompt Screen
+
+It prompts you who is the winner or if there is a draw. Use the mouse to click on any
+place in the screen can restart/start a new game.
+

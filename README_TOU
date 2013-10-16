@@ -1,0 +1,50 @@
+---------------------------------------------- Tac ----------------------------------------------
+                                                                        -- Silao Xu
+
+-- Engine Requirements
+      **  Collision Detection
+          The engine support circle-circle, circle-AAB, AAB-AAB, circle-polygon, AAB-polygon, and
+          polygon-polygon collision detection. They are defined under package "engine.collision".
+      **  Compound Shapes
+          The engine supports compound shapes construction. There is an 1-to-1 relationship
+          between Entity and Shape. An entity could be composed of any atomic shapes defined
+          in the "entity.collision" package.
+      **  World Objects
+          The relationship and the message flow (for Tou game) is like the follows:
+          ================================================================================
+          Engine -> Screen -> ViewPort -> World (1)->(*) Entity
+                       |                    |
+                       +--------------------+  
+          ================================================================================
+      **  Free Movements
+          The airplane is controled by user's keyboard A-W-S-D. Entity's location is 
+          determined by vector (x, y)
+      **  Velocity
+          It is determined by a constant MOVING_OFFSET for each movable entities. The
+          velocity is determined by the equation MOVING_OFFSET / THRESHOLD_TIME_DELTA.
+      
+-- Game Requirements
+      **  Bullet System
+          Yield by specific tank unit or player/boss warplane.
+      **  AI won
+          Once my plane crashed.
+      **  Player won
+          Once the boss got killed.
+      **  Object Collision
+          The airplane is a compound shape, which consists of 2 circles, 3 AABs and 2 polygon
+          (the warplane's body and wings area). It is highlight in transparent color. The bullet
+          fired by the airplane controled by user is treated as AAB object.
+      **  Freely-movable unit
+          The blue warplant is controled by player. It starts from the upper left corner.
+          The plane fires 2 bullets at a time.
+      **  Finite Game Board
+          The unit cannot move out of the map. When the little airplane and bullet run off the
+          boundary of the map, they disappear.
+      **  Others
+          The bullet fired by player's plane could damage an enemy. The collision is
+          obvious, once our airplane hit any enemies, we lost the game. Once the enemies
+          being shooted, it disappeared.
+
+-- Approximate hour to Complete
+      Total (hour) ~= Tou1 + Tou2 ~= 27 hours
+
