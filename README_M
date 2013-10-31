@@ -1,0 +1,76 @@
+---------------------------------------------- M1  ----------------------------------------------
+                                                                        -- Silao Xu
+
+** About Playtesting
+      **  I participated in the play testing 2 weeks ago, but the login name shown up is sx13,
+          which is my brown selfservice id, I did receive response from the google docs.
+
+-- Engine Requirements
+      **  Integration
+          Entity class now has added this feature.
+      **  Force and Impulse
+          In response to the collision callback.
+      **  MTV
+          This feature is implemented in physics package
+      **  Collision Response
+          This would be implemented in MGameWorld::onTick (which is tickByNano() in my game),
+          where we perform collision detection before each entity's onTick() method. The
+          response action would apply the force and impulse accordingly.
+      
+-- Game Requirements
+      **  The player is able to run left(A/1) and right (D/2), jump (J).
+      **  The game world is bounded by static platform bars.
+      **  The rectangle, the triangle, the two citrus balls, the diamond shape are all dynamic
+          objects. They all shows up at the same location point (0, 0) and are moved out 
+          eventually.
+      **  The rectangle shape's mass is less than the character. The diamond's mass is
+          bigger than the character's.
+      **  Don't toss the grenades too heavily.
+      **  If the objects fall throught the ground, the game rendering might be delayed by
+          the system, since it's using real time to compute the post velocity, the velocity
+          might explode in that case.
+
+-- Approximate hour used
+      Total (hour) ~= [20, 30] hours
+
+---------------------------------------------- M2  ----------------------------------------------
+                                                                        -- Silao Xu
+
+-- Engine Requirements
+      **  Restitution
+          The update of the force and impulse for collision callback of the Entity (TsuEntity),
+          is now taking the restitution of both colliding objects into account. This is stick to
+          the formula in the slides. The post-collision velocities would updated in the next
+          tick after the collision.
+      **  Raycasting
+          The raycasting is now supported in TsuRay class, in physics package. The grenade
+          explosion and shooting behaivor is to extend the TsuRay.
+
+-- Game Requirements
+      **  Perfectly inelastic collision
+          The floor and the triangle are both with 0 restitution. When the triangle falls on the
+          floor, it would never be bounced up.
+      **  Inelastic collision
+          The left and right bar are both with non-zero restitution, and the rectangle, and
+          the citrus ball are all with 0.5 restitution, playing with the raser gun,
+          when they are forced to hit to the wall, the impulse of the raser is too strong
+          that they would not be bounced back.
+      **  Elastic collision
+          The character is with 0.8 restitution, when it hit the ground, it would be bounced
+          above even if the ground has no restitution at all.
+      **  The character can fire raser "bullet" at certain interval, it would last for certain
+          amount of millisecond and fading away eventually. During this process, it would
+          apply impulse to whatever they hit in the direction of the ray.
+      **  The character can toss grenade and explodes on contact with any surface and pushes all
+          objects that are both within its radius and not obstructed by other objects.
+      **  The character can jump if and only if standing on a solid object. This is determined
+          using character's y-location and the colliding objects' y-location.
+      **  If the objects fall throught the ground, the game rendering might be delayed by
+          the system, since it's using real time to compute the post velocity, the velocity
+          might explode in that case. One can try changing the number of rays spawned in class
+          MWorldEntityGrenadeExplosionRay, like if changes the number to 2000 and player kept
+          throwing grenades, the program would spent too much time in drawing, and some heavy
+          entities might fall through the bars.
+
+-- Approximate hour used
+      Total (hour) ~= [20, 30] hours
